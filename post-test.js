@@ -9,14 +9,19 @@ export const options = {
 };
 
 export default function () {
-  registerUser();
-  loginUser();
+  // Generamos un usuario único por cada iteración
+  const uniqueId = `${__VU}_${__ITER}_${Math.floor(Math.random() * 100000)}`;
+  const username = `usuario_${uniqueId}`;
+  const password = 'contraseñaSegura123';
+
+  registerUser(username, password);
+  loginUser(username, password);
 }
 
-export function registerUser() {
+export function registerUser(username, password) {
   const payload = JSON.stringify({
-    username: 'usuarioDePrueba',
-    password: 'contraseñaSegura'
+    username: username,
+    password: password
   });
 
   const params = {
@@ -34,10 +39,10 @@ export function registerUser() {
   sleep(1);
 }
 
-export function loginUser() {
+export function loginUser(username, password) {
   const payload = JSON.stringify({
-    username: 'usuarioDePrueba',
-    password: 'contraseñaSegura'
+    username: username,
+    password: password
   });
 
   const params = {
